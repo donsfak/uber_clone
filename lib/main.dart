@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:uber_clone/screens/home_screen.dart';
 import 'auth/login_screen.dart';
 
 Future<void> main() async {
@@ -28,7 +30,10 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
         scaffoldBackgroundColor: Colors.black,
       ),
-      home: const LoginScreen(),
+      home:
+          FirebaseAuth.instance.currentUser == null
+              ? LoginScreen()
+              : HomeScreen(),
     );
   }
 }
