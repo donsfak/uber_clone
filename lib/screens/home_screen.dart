@@ -11,6 +11,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uber_clone/auth/login_screen.dart';
 import 'package:uber_clone/global/global_var.dart';
 import 'package:uber_clone/methods/common_methods.dart';
+import 'package:uber_clone/screens/search_destination.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -344,7 +345,7 @@ class _HomeScreenState extends State<HomeScreen>
               googleMapCompleterController.complete(controllerGoogleMap);
 
               setState(() {
-                bottomMapPadding = 150;
+                bottomMapPadding = 300;
               });
 
               getCurrentLiveLocationOfUser();
@@ -384,9 +385,6 @@ class _HomeScreenState extends State<HomeScreen>
             right: 0,
             left: 0,
             child: GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/search_screen');
-              },
               child: SizedBox(
                 height: searchContainerHeight,
                 child: Row(
@@ -395,7 +393,12 @@ class _HomeScreenState extends State<HomeScreen>
                     _buildAnimatedButton(
                       icon: Icons.search,
                       onPressed: () {
-                        //Navigator.pushNamed(context, '/search_screen');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SearchDestination(),
+                          ),
+                        );
                       },
                     ),
                     _buildAnimatedButton(
